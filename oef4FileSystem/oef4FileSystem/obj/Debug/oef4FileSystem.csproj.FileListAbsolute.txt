@@ -1,0 +1,6 @@
+C:\Users\Roel Kint\Documents\Uni\Softwareontwikkeling 2\labo\reeks01\oef4FileSystem\oef4FileSystem\bin\Debug\oef4FileSystem.exe.config
+C:\Users\Roel Kint\Documents\Uni\Softwareontwikkeling 2\labo\reeks01\oef4FileSystem\oef4FileSystem\bin\Debug\oef4FileSystem.exe
+C:\Users\Roel Kint\Documents\Uni\Softwareontwikkeling 2\labo\reeks01\oef4FileSystem\oef4FileSystem\bin\Debug\oef4FileSystem.pdb
+C:\Users\Roel Kint\Documents\Uni\Softwareontwikkeling 2\labo\reeks01\oef4FileSystem\oef4FileSystem\obj\Debug\oef4FileSystem.csprojResolveAssemblyReference.cache
+C:\Users\Roel Kint\Documents\Uni\Softwareontwikkeling 2\labo\reeks01\oef4FileSystem\oef4FileSystem\obj\Debug\oef4FileSystem.exe
+C:\Users\Roel Kint\Documents\Uni\Softwareontwikkeling 2\labo\reeks01\oef4FileSystem\oef4FileSystem\obj\Debug\oef4FileSystem.pdb
