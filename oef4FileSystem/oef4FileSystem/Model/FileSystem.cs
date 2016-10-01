@@ -21,6 +21,7 @@ namespace oef4FileSystem.Model
         {
             root = new Folder("");
             CurrentFolder = root;
+            int jo = 1234;
             root.Files.Add(new TextFile("Al een file1"));
             root.Files.Add(new TextFile("Al een file1"));
             root.Files.Add(new TextFile("Al een file1"));
