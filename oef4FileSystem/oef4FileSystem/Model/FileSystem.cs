@@ -22,12 +22,10 @@ namespace oef4FileSystem.Model
             root = new Folder("");
             CurrentFolder = root;
             int jo = 1234;
-            root.Files.Add(new TextFile("Al een file1"));
-            root.Files.Add(new TextFile("Al een file1"));
-            root.Files.Add(new TextFile("Al een file1"));
-            root.Files.Add(new Folder("Al een folder1"));
-            root.Files.Add(new Folder("Al een folder1"));
-            root.Files.Add(new Folder("Al een folder1"));
+            root.Files.Add(new Folder("folder"));
+            root.Files.Add(new Folder("folder2"));
+            root.Files.Add(new TextFile("file1"));
+          
         }
 
         public void cd(string path)
@@ -35,9 +33,21 @@ namespace oef4FileSystem.Model
             if(path == "..")
             {
                 CurrentFolder = CurrentFolder.Parent;
-            } else if(path == "/" && CurrentFolder.Parent != null)
+            } else if(path == "/" || CurrentFolder.Parent != null)
             {
                 CurrentFolder = root;
+            }
+            foreach(File f in CurrentFolder.Files)
+            {
+                if(f.GetType() == CurrentFolder.GetType()) {
+                
+                if(f.Name == path)
+                {
+ //                   CurrentFolder = f;
+                    Console.WriteLine("ola");
+                }
+                pwd();
+                }
             }
 
             foreach(Folder a in CurrentFolder.Files)
@@ -57,7 +67,17 @@ namespace oef4FileSystem.Model
         {
             foreach(File a in CurrentFolder.Files)
             {
-                Console.WriteLine(a.Name);
+                Folder b = new Folder("hey");
+                TextFile c = new TextFile("yo");
+                if(a.GetType() == b.GetType())
+                {
+                    Console.WriteLine(a.Name + "/");
+                }
+                if (a.GetType() == c.GetType())
+                {
+                    Console.WriteLine(a.Name);
+                }
+
             }
         }
         //fuck deze functie echt

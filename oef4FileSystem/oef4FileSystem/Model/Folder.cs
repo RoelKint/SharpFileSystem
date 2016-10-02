@@ -18,12 +18,12 @@ namespace oef4FileSystem.Model
 
         public Folder(string name) : base(name)
         {
-            Files.Add(new TextFile("Al een file"));
-            Files.Add(new TextFile("Al een file"));
-            Files.Add(new TextFile("Al een file"));
-            Files.Add(new Folder("Al een folder"));
-            Files.Add(new Folder("Al een folder"));
-            Files.Add(new Folder("Al een folder"));
+            Files = new List<File>();
+            Files.Add(new TextFile("file5"));
+            Files.Add(new TextFile("file66"));
+            Files.Add(new TextFile("file65"));
+            Files.Add(new TextFile("file32"));
+
         }
         public TextFile GetFile(string name)
         {

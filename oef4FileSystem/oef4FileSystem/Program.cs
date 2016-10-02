@@ -20,7 +20,26 @@ namespace oef4FileSystem
             {
                 ctr++;
                 s = Console.ReadLine();
-                Console.WriteLine("jow");
+                
+                if (s.Contains("cd"))
+                {
+                    Console.WriteLine("GaNaar");
+                    HetFileSystem.cd(s);
+                }
+                if (s.Contains("pwd"))
+                {
+                    Console.WriteLine("padnaam");
+                    HetFileSystem.pwd();
+                }
+                if (s.Contains("mkdir"))
+                {
+                    Console.WriteLine("maak een dir");
+                    
+                } else if (s.Contains("dir"))
+                {
+                    Console.WriteLine("MapInhoud");
+                    HetFileSystem.dir();
+                }
             } while (s != null);
             Console.WriteLine("---");
         }
