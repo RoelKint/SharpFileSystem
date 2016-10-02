@@ -20,48 +20,62 @@ namespace oef4FileSystem.Model
         public FileSystem()
         {
             root = new Folder("");
-            CurrentFolder = root;
+            
             int jo = 1234;
-            root.Files.Add(new Folder("folder"));
-            root.Files.Add(new Folder("folder2"));
+            root.Files.Add(new Folder("folder", root));
+            root.Files.Add(new Folder("folder2", root));
             root.Files.Add(new TextFile("file1"));
-          
+            Folder folder1 = (Folder)root.Files.Find(x => x.Name.Contains("folder")); ;
+            folder1.Files.Add(new Folder("fildaar", folder1));
+
+            CurrentFolder = root;
         }
 
         public void cd(string path)
         {
-            if(path == "..")
+            Folder fd = CurrentFolder;
+            string[] PathParts = path.Split(' ');
+            if (PathParts[1] == "..")
             {
                 CurrentFolder = CurrentFolder.Parent;
-            } else if(path == "/" || CurrentFolder.Parent != null)
-            {
-                CurrentFolder = root;
-            }
+            } else { 
+            int found = 0;
             foreach(File f in CurrentFolder.Files)
             {
                 if(f.GetType() == CurrentFolder.GetType()) {
+                    
+                if(f.Name == PathParts[1])
+                {
+                    CurrentFolder = (Folder)f;
+                        found++;
+                }
+      
+                }
+                }
                 
-                if(f.Name == path)
-                {
- //                   CurrentFolder = f;
-                    Console.WriteLine("ola");
-                }
-                pwd();
-                }
-            }
-
-            foreach(Folder a in CurrentFolder.Files)
+            if(found == 0 )
             {
-                if(a.Name == path)
-                {
-                    CurrentFolder = a;
-                }
+                
+                    throw new FileSystemException("Deze map bestaat niet! stop met mijn programma te doen crashen!!!");
+                
             }
-            throw new FileSystemException("Deze map bestaat niet! stop met mijn programma te doen crashen!!!");
+            }
+            pwd();
+
         }
         public void pwd()
         {
-            Console.WriteLine(CurrentFolder.Name);
+            string PwdString = "/";
+            Folder vorige = CurrentFolder;
+            while(vorige.Parent != null)
+            {
+                if(vorige.Name != null)
+                {
+                    PwdString = "/" + vorige.Name + PwdString;
+                }
+                vorige = vorige.Parent;
+            }
+            Console.WriteLine(PwdString);
         }
         public void dir()
         {
@@ -103,7 +117,7 @@ namespace oef4FileSystem.Model
             {
                 if (a.Name == name)
                 {
-                    throw new FileSystemException("DUDE DEZE FILE BESTAAT AL");
+                    throw new FileSystemException("DUDE DEZE FOLDER BESTAAT AL");
                 }
             }
             CurrentFolder.Files.Add(new Folder(name));

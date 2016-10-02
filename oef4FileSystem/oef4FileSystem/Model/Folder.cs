@@ -16,13 +16,27 @@ namespace oef4FileSystem.Model
             set { _Files = value; }
         }
 
-        public Folder(string name) : base(name)
+        public Folder(string name, Folder parent) : base(name)
         {
+            Parent = parent; 
             Files = new List<File>();
+            //Files.Add(new Folder("foldeir", this));
+            Files.Add(new TextFile("file5"));
+            Files.Add(new TextFile("file5"));
             Files.Add(new TextFile("file5"));
             Files.Add(new TextFile("file66"));
             Files.Add(new TextFile("file65"));
             Files.Add(new TextFile("file32"));
+            
+            if (name == "folder")
+            {
+                Files.Add(new TextFile("CONTROLEERFILE"));
+            }
+
+        }
+        public Folder(string name) : base(name)
+        {
+           
 
         }
         public TextFile GetFile(string name)
