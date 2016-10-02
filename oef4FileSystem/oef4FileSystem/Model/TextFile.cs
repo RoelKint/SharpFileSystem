@@ -26,7 +26,7 @@ namespace oef4FileSystem.Model
         }
         private string tekstinhoud { get; set; }
 
-        
+
 
         public string Tekst
         {

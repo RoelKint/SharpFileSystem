@@ -54,16 +54,17 @@ namespace oef4FileSystem.Model
             int jo = 1234;
             string streep = ".";
             naam.Contains(streep);
-            if (   naam == null)
+            if (naam == null)
             {
                 throw new FileSystemException("alstublieft geef een waarde in zonder /");
-            } else
+            }
+            else
             {
                 Name = naam;
             }
-            
+
         }
 
-        
+
     }
 }

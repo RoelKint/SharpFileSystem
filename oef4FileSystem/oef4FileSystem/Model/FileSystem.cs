@@ -20,7 +20,7 @@ namespace oef4FileSystem.Model
         public FileSystem()
         {
             root = new Folder("");
-            
+
             int jo = 1234;
             root.Files.Add(new Folder("folder", root));
             root.Files.Add(new Folder("folder2", root));
@@ -35,30 +35,36 @@ namespace oef4FileSystem.Model
         {
             Folder fd = CurrentFolder;
             string[] PathParts = path.Split(' ');
+            if (PathParts.Length == 1)
+            {
+                throw new FileSystemException("Deze map bestaat niet! stop met mijn programma te doen crashen!!!");
+            }
             if (PathParts[1] == "..")
             {
                 CurrentFolder = CurrentFolder.Parent;
-            } else { 
-            int found = 0;
-            foreach(File f in CurrentFolder.Files)
-            {
-                if(f.GetType() == CurrentFolder.GetType()) {
-                    
-                if(f.Name == PathParts[1])
-                {
-                    CurrentFolder = (Folder)f;
-                        found++;
-                }
-      
-                }
-                }
-                
-            if(found == 0 )
-            {
-                
-                    throw new FileSystemException("Deze map bestaat niet! stop met mijn programma te doen crashen!!!");
-                
             }
+            else {
+                int found = 0;
+                foreach (File f in CurrentFolder.Files)
+                {
+                    if (f.GetType() == CurrentFolder.GetType())
+                    {
+
+                        if (f.Name == PathParts[1])
+                        {
+                            CurrentFolder = (Folder)f;
+                            found++;
+                        }
+
+                    }
+                }
+
+                if (found == 0)
+                {
+
+                    throw new FileSystemException("Deze map bestaat niet! stop met mijn programma te doen crashen!!!");
+
+                }
             }
             pwd();
 
@@ -67,9 +73,9 @@ namespace oef4FileSystem.Model
         {
             string PwdString = "/";
             Folder vorige = CurrentFolder;
-            while(vorige.Parent != null)
+            while (vorige.Parent != null)
             {
-                if(vorige.Name != null)
+                if (vorige.Name != null)
                 {
                     PwdString = "/" + vorige.Name + PwdString;
                 }
@@ -79,11 +85,11 @@ namespace oef4FileSystem.Model
         }
         public void dir()
         {
-            foreach(File a in CurrentFolder.Files)
+            foreach (File a in CurrentFolder.Files)
             {
                 Folder b = new Folder("hey");
                 TextFile c = new TextFile("yo");
-                if(a.GetType() == b.GetType())
+                if (a.GetType() == b.GetType())
                 {
                     Console.WriteLine(a.Name + "/");
                 }
@@ -98,29 +104,48 @@ namespace oef4FileSystem.Model
         public void tree()
         {
 
+            Weergevenbinnenkant(CurrentFolder, "");
+        }
+        public void Weergevenbinnenkant(Folder Current, string indent)
+        {
+            foreach (File f in Current.Files)
+            {
+                string LangereIntent = indent + "   ";
+                if (f.GetType() == Current.GetType())
+                {
+                    Console.WriteLine(indent + f.Name);
+                    Weergevenbinnenkant((Folder)f, LangereIntent);
+                }
+                else
+                {
+                    Console.WriteLine(indent + f.Name);
+                }
+            }
         }
 
         public void mktext(string name)
         {
-            foreach(TextFile a in CurrentFolder.Files)
+            string[] PathParts = name.Split(' ');
+            foreach (File a in CurrentFolder.Files)
             {
-                if(a.Name == name)
+                if (a.Name == PathParts[1] && a.GetType() != CurrentFolder.GetType())
                 {
                     throw new FileSystemException("DUDE DEZE FILE BESTAAT AL");
                 }
             }
-            CurrentFolder.Files.Add(new TextFile(name));
+            CurrentFolder.Files.Add(new TextFile(PathParts[1]));
         }
         public void mkdir(string name)
         {
-            foreach (Folder a in CurrentFolder.Files)
+            string[] PathParts = name.Split(' ');
+            foreach (File a in CurrentFolder.Files)
             {
-                if (a.Name == name)
+                if (a.Name == PathParts[1] && a.GetType() == CurrentFolder.GetType())
                 {
                     throw new FileSystemException("DUDE DEZE FOLDER BESTAAT AL");
                 }
             }
-            CurrentFolder.Files.Add(new Folder(name));
+            CurrentFolder.Files.Add(new Folder(PathParts[1], CurrentFolder));
         }
     }
 }

@@ -18,7 +18,7 @@ namespace oef4FileSystem.Model
 
         public Folder(string name, Folder parent) : base(name)
         {
-            Parent = parent; 
+            Parent = parent;
             Files = new List<File>();
             //Files.Add(new Folder("foldeir", this));
             Files.Add(new TextFile("file5"));
@@ -27,17 +27,16 @@ namespace oef4FileSystem.Model
             Files.Add(new TextFile("file66"));
             Files.Add(new TextFile("file65"));
             Files.Add(new TextFile("file32"));
-            
+
             if (name == "folder")
             {
                 Files.Add(new TextFile("CONTROLEERFILE"));
             }
 
         }
+        //alleen voor de root dir.
         public Folder(string name) : base(name)
         {
-           
-
         }
         public TextFile GetFile(string name)
         {
@@ -48,7 +47,7 @@ namespace oef4FileSystem.Model
         {
             if (name != null && name != "")
             {
-                foreach(TextFile a in Files)
+                foreach (TextFile a in Files)
                 {
                     if (a.Name == name)
                     {
@@ -79,7 +78,7 @@ namespace oef4FileSystem.Model
 
         public void PrintList()
         {
-            foreach(Folder a in Files)
+            foreach (Folder a in Files)
             {
                 Console.WriteLine(a.Name + "/");
             }

@@ -9,7 +9,7 @@ namespace oef4FileSystem
 {
     public class Program
     {
-        
+
         static void Main(string[] args)
         {
             FileSystem HetFileSystem = new FileSystem();
@@ -20,22 +20,34 @@ namespace oef4FileSystem
             {
                 ctr++;
                 s = Console.ReadLine();
-                
+
                 if (s.Contains("cd"))
                 {
                     Console.WriteLine("GaNaar");
                     HetFileSystem.cd(s);
+                }
+                if (s.Contains("tree"))
+                {
+                    Console.WriteLine("GaNaar");
+                    HetFileSystem.tree();
                 }
                 if (s.Contains("pwd"))
                 {
                     Console.WriteLine("padnaam");
                     HetFileSystem.pwd();
                 }
+                if (s.Contains("mktext"))
+                {
+                    Console.WriteLine("maak een file");
+                    HetFileSystem.mktext(s);
+                }
                 if (s.Contains("mkdir"))
                 {
                     Console.WriteLine("maak een dir");
-                    
-                } else if (s.Contains("dir"))
+                    HetFileSystem.mkdir(s);
+
+                }
+                else if (s.Contains("dir"))
                 {
                     Console.WriteLine("MapInhoud");
                     HetFileSystem.dir();
